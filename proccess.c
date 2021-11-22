@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[]) {
     int x = 2;//this is not shared between two process if we wanna share data
-    //between processes we have to socket ,shared memory, pipes
+    //between processes we have to used socket ,shared memory, pipes,message queue.
     int pid = fork();//will create new process
     if (pid == -1) {
         return 1;
