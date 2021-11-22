@@ -26,7 +26,7 @@ void *fun2(void *pv) // producer
     printf("producer --%d\n", i);
     sleep(1);
   }
-  sem_post(&s1);//increament s1 so other can make it avail
+  sem_post(&s1);//increament s1 can make it available to other threads after successfully done 
   sem_post(&s2);//giving chance to consumer to consume
   // pthread_exit(NULL);
 }
