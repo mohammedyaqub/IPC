@@ -5,11 +5,11 @@
 const int max = 10;
 sem_t s1;
 sem_t s2;
-//to synchronize the threads producer then consumer so need twol semaphore 
+//to synchronize the threads producer then consumer so need two semaphore 
 void *fun1(void *pv) // consumer
 {
   int i;
-  sem_wait(&s2);//initially blocked here to synchronize
+  sem_wait(&s2);//initially blocked here as of s2 == 0
   sem_wait(&s1);
   for (i = 1; i <= max; i++) {
     printf("consumer %d\n", i);
@@ -21,12 +21,12 @@ void *fun1(void *pv) // consumer
 void *fun2(void *pv) // producer
 {
   int i;
-  sem_wait(&s1);//decrement thus making it not available to other threads
+  sem_wait(&s1);//initially available to execute then decrement thus making it not available to other threads
   for (i = 1; i <= max; i++) {
     printf("producer --%d\n", i);
     sleep(1);
   }
-  sem_post(&s1);//increament to ba
+  sem_post(&s1);//increament s1 so other can make it avail
   sem_post(&s2);//giving chance to consumer to consume
   // pthread_exit(NULL);
 }
