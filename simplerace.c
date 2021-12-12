@@ -53,7 +53,7 @@ const int max = 10000;
 //to synchronize the threads producer then consumer so need two semaphore
 void *fun1(void *arg)
 {
-    //better way to use locks  to make less expensive so
+    //better way to use less locks  to make less expensive so use less code inside locks prevent lock overhead
     /*
     sem_wait(&s1);//initial time decrement the value which will become zero not availble
     for (int i = 0; i < max; i++)
